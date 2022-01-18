@@ -1,0 +1,23 @@
+﻿@model autosalon_.Data.Car
+<html>
+@if(ViewData["status"].ToString()!="")
+            {
+<a style="color: red;">
+    @ViewData["status"].ToString()</a>
+    }
+    <body>
+        <form asp-action="AddCars" asp-controller="Home">
+            <div style=" margin-bottom: 10px;">
+                <label>Марка</label>
+                <input asp-for="markname" />
+            </div>
+            <div style=" margin-bottom: 10px;">
+                <label>Цвет</label>
+                <input type="color" asp-for="color" />
+            </div>
+            <div style=" margin-bottom: 10px;">
+                <input type="submit" value="Сохранить">
+            </div>
+        </form>
+    </body>
+</html>

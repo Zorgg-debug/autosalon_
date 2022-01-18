@@ -1,0 +1,14 @@
+﻿.header {
+    font-weight:bold;
+}
+table, tr, td {
+
+    border-collapse: collapse;
+    border: 1px solid green;
+    text-align: center;
+}
+
+td {
+    padding: 3px 3px 3px 3px;
+}
+

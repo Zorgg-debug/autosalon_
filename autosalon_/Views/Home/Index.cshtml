@@ -1,0 +1,63 @@
+﻿@model IEnumerable<autosalon_.Data.Salon>
+<head>
+        <link rel="stylesheet" type="text/css" href="~/Styles/StyleSheet.css" />
+</head>
+<body>
+    <a asp-action ="AddCars">Добавить авто</a>
+    <table style="margin-top:8px">
+        <tr>
+            <td class="header">
+                Наименование салона
+            </td>
+            <td class="header">
+                Марка авто
+            </td>
+            <td class="header">
+                Цвет
+            </td>
+            <td class="header">
+                Цвет1
+            </td>
+            <td class="header">
+                Количество
+            </td>
+        </tr>
+        @foreach (var item in Model)
+        {
+
+            var groupsCar = item.cars.GroupBy(a => a.markname).Select(n => new {
+                NameMark = n.Key,
+                Color = n.GroupBy(c => c.color).Select(d => new { colorName = d.Key, count = d.Count() }),
+
+            });
+            foreach (var e in groupsCar)
+            {
+                foreach (var col in e.Color)
+                {
+                <tr>
+                    <td>
+                        @item.name
+                    </td>
+                    <td>
+                        @e.NameMark
+                    </td>
+                    <td>
+                        <a style="        background-color: @col.colorName;
+                        width: 10px;
+                        height: 10px;
+                        display: inline-block;
+                        border: 1px solid;" />
+                    </td>
+                    <td>
+                        @col.colorName
+                    </td>
+                    <td>
+                        @col.count
+                    </td>
+                </tr>
+                }
+            }
+
+        }
+    </table>
+</body>
